@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.js": "/static/js/main.941dce85.js",
-    "index.html": "/index.html",
-    "main.941dce85.js.map": "/static/js/main.941dce85.js.map"
+    "main.js": "/Loyalty-app/static/js/main.941dce85.js",
+    "index.html": "/Loyalty-app/index.html",
+    "main.941dce85.js.map": "/Loyalty-app/static/js/main.941dce85.js.map"
   },
   "entrypoints": [
     "static/js/main.941dce85.js"
