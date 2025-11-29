@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { QrCode, Scan, Coffee, Gift, User, Store, PlusCircle, History, LogOut, Wallet } from 'lucide-react';
 
 // --- Types & Interfaces ---
-// Define the structure for a transaction record
 interface Transaction {
   id: string;
   type: 'EARN' | 'REDEEM';
@@ -11,7 +10,6 @@ interface Transaction {
   description: string;
 }
 
-// Define the structure for a reward item
 interface Reward {
   id: string;
   name: string;
@@ -19,7 +17,6 @@ interface Reward {
   icon: React.ReactNode;
 }
 
-// Define the structure for the main user data store
 interface UserData {
   id: string;
   name: string;
@@ -28,7 +25,6 @@ interface UserData {
 }
 
 // --- Mock Data & Constants ---
-// Initial state for a demo user
 const INITIAL_USER: UserData = {
   id: 'CUST-8821',
   name: 'Alex Johnson',
@@ -39,7 +35,6 @@ const INITIAL_USER: UserData = {
   ],
 };
 
-// Available rewards the user can redeem
 const REWARDS: Reward[] = [
   { id: 'r1', name: 'Free Espresso', cost: 50, icon: <Coffee className="w-6 h-6" /> },
   { id: 'r2', name: '$5 Store Credit', cost: 100, icon: <Wallet className="w-6 h-6" /> },
@@ -47,23 +42,17 @@ const REWARDS: Reward[] = [
 ];
 
 export default function LoyaltyApp() {
-  // State for switching between customer and merchant view
+  // State
   const [view, setView] = useState<'CUSTOMER' | 'MERCHANT'>('CUSTOMER');
-  // State for the user's loyalty data
   const [userData, setUserData] = useState<UserData>(INITIAL_USER);
-  // State for merchant portal inputs
   const [merchantInputId, setMerchantInputId] = useState('');
   const [pointsInput, setPointsInput] = useState<number>(0);
-  // State for temporary success/error notifications
   const [notification, setNotification] = useState<string | null>(null);
 
-  // --- Persistence Hooks ---
-
-  // Load data from browser's localStorage on initial load
+  // Initialize data from local storage if available
   useEffect(() => {
     const saved = localStorage.getItem('loyalty_user');
     if (saved) {
-      // Use a try-catch for robust parsing in case localStorage data is corrupted
       try {
         setUserData(JSON.parse(saved));
       } catch (e) {
@@ -72,20 +61,17 @@ export default function LoyaltyApp() {
     }
   }, []);
 
-  // Save data to localStorage whenever userData changes
+  // Save to local storage on change
   useEffect(() => {
     localStorage.setItem('loyalty_user', JSON.stringify(userData));
   }, [userData]);
 
   // --- Actions ---
-
-  // Helper function to show temporary notifications
   const showNotification = (msg: string) => {
     setNotification(msg);
-    setTimeout(() => setNotification(null), 3000); // Clear after 3 seconds
+    setTimeout(() => setNotification(null), 3000);
   };
 
-  // Logic to add points to the user's account
   const addPoints = (amount: number, desc: string) => {
     const newTx: Transaction = {
       id: Date.now().toString(),
@@ -97,12 +83,11 @@ export default function LoyaltyApp() {
     setUserData(prev => ({
       ...prev,
       points: prev.points + amount,
-      transactions: [newTx, ...prev.transactions] // Add new transaction to the start
+      transactions: [newTx, ...prev.transactions]
     }));
     showNotification(`Successfully added ${amount} points!`);
   };
 
-  // Logic to redeem a reward
   const redeemReward = (reward: Reward) => {
     if (userData.points < reward.cost) {
       showNotification('Insufficient points!');
@@ -123,21 +108,18 @@ export default function LoyaltyApp() {
     showNotification(`Redeemed ${reward.name}!`);
   };
 
-  // Handler for the Merchant Portal form submission
   const handleMerchantSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (pointsInput <= 0) return;
-    // For this demo, we assume the merchantInputId is valid and just add points
-    // A real app would validate the ID first.
     addPoints(pointsInput, 'Store Visit (Manual Entry)');
-    setPointsInput(0); // Clear input after successful transaction
+    setPointsInput(0);
   };
 
-  // --- Customer View Component ---
+  // --- Components ---
 
   const CustomerView = () => (
     <div className="space-y-6">
-      {/* Digital Loyalty Card */}
+      {/* Digital Card */}
       <div className="bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl p-6 text-white shadow-lg transform transition hover:scale-105 duration-300">
         <div className="flex justify-between items-start">
           <div>
@@ -174,3 +156,6 @@ export default function LoyaltyApp() {
                 </div>
               </div>
               <button
+                onClick={() => redeemReward(reward)}
+                disabled={userData.points < reward.cost}
+                className={`px-4
