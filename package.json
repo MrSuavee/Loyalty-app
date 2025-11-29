@@ -2,7 +2,6 @@
   "name": "loyalty-app-docker",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://mrsuavee.github.io/Loyalty-app",
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -19,8 +18,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",     
-    "deploy": "gh-pages -d build"     
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [

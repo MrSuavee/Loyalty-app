@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-// CRITICAL FIX: Reverting to the standard import path without the extension
 import App from './App/App'; 
 
 const root = ReactDOM.createRoot(
