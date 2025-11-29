@@ -2,7 +2,7 @@
   "name": "loyalty-app-docker",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://github.com/MrSuavee/Loyalty-app",
+  "homepage": "https://mrsuavee.github.io/Loyalty-app",  <-- ENSURE THIS IS EXACTLY RIGHT
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

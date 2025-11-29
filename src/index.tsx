@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App.tsx'; 
+// CRITICAL FIX: Reverting to the standard import path without the extension
+import App from './App/App'; 
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
