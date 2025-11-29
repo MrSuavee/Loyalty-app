@@ -133,29 +133,4 @@ export default function LoyaltyApp() {
           <p className="text-5xl font-extrabold tracking-tight">{userData.points} <span className="text-2xl font-normal">PTS</span></p>
         </div>
         <div className="mt-4 flex justify-between items-end">
-          <p className="font-mono text-sm tracking-widest opacity-80">{userData.id}</p>
-          <p className="text-sm font-semibold">{userData.name}</p>
-        </div>
-      </div>
-
-      {/* Rewards Catalog */}
-      <div>
-        <h3 className="text-lg font-bold text-gray-800 mb-3 flex items-center">
-          <Gift className="w-5 h-5 mr-2 text-purple-600" /> Rewards
-        </h3>
-        <div className="grid grid-cols-1 gap-3">
-          {REWARDS.map(reward => (
-            <div key={reward.id} className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center">
-              <div className="flex items-center space-x-3">
-                <div className="p-2 bg-purple-100 text-purple-600 rounded-lg">
-                  {reward.icon}
-                </div>
-                <div>
-                  <p className="font-semibold text-gray-800">{reward.name}</p>
-                  <p className="text-xs text-gray-500 font-bold">{reward.cost} PTS</p>
-                </div>
-              </div>
-              <button
-                onClick={() => redeemReward(reward)}
-                disabled={userData.points < reward.cost}
-                className={`px-4
+          <p className="font-mono text-sm
