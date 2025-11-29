@@ -1,0 +1,9 @@
+services:
+  loyalty-app:
+    build: .
+    container_name: loyalty-app-container
+    ports:
+      - "3002:80"
+    restart: always
+    environment:
+      - NODE_ENV=production
