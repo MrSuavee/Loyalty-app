@@ -2,6 +2,7 @@
   "name": "loyalty-app-docker",
   "version": "1.0.0",
   "private": true,
+  "homepage": "https://Jaden-tech.github.io/Loyalty-app",
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
